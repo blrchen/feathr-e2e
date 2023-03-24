@@ -26,10 +26,21 @@ services:
     networks:
       - network
 
+  model-server:
+    image: windoze/model-server:latest
+    ports:
+      - "8001:8000"
+    networks:
+      - network
+
   feathr-online:
     image: feathrfeaturestore/feathrpiper:latest
     ports:
       - "8000:8000"
+    environment:
+      - FEATHRCI_HOST=redis
+      - FEATHRCI_PASS=
+      - MODEL_SERVER_URL=http://model-server:8000
     networks:
       - network
 
