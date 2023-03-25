@@ -42,7 +42,7 @@ services:
       - "8000:8000"
     environment:
       - FEATHRCI_HOST=redis
-      - FEATHRCI_PASS=
+      - FEATHRCI_PASS=foobared
       - MODEL_SERVER_URL=http://model-server:8000
     networks:
       - network
