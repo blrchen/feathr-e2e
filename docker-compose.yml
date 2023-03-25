@@ -14,6 +14,7 @@ services:
       - "8888:8888"
     volumes:
       - ./notebooks:/home/jovyan/work/notebooks
+    command: "start.sh jupyter lab --NotebookApp.token='' --NotebookApp.password=''"
     environment:
       - FEATHR_SANDBOX=True
     networks:
