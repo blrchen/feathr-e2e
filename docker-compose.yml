@@ -4,6 +4,7 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
+    command: redis-server --requirepass 'foobared'
     networks:
       - network
 
@@ -14,6 +15,8 @@ services:
     volumes:
       - ./notebooks:/home/jovyan/work/notebooks
     command: "start.sh jupyter lab --NotebookApp.token='' --NotebookApp.password=''"
+    environment:
+      - FEATHR_SANDBOX=True
     networks:
       - network
 
@@ -27,10 +30,21 @@ services:
     networks:
       - network
 
+  model-server:
+    image: windoze/model-server:latest
+    ports:
+      - "8001:8000"
+    networks:
+      - network
+
   feathr-online:
     image: feathrfeaturestore/feathrpiper:latest
     ports:
       - "8000:8000"
+    environment:
+      - FEATHRCI_HOST=redis
+      - FEATHRCI_PASS=foobared
+      - MODEL_SERVER_URL=http://model-server:8000
     networks:
       - network
 
