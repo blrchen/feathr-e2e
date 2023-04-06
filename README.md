@@ -49,7 +49,7 @@ Navigate to `Jupyter Lab (Spark)` on http://localhost:8888 to run a quick Jupyte
 
 Run `docker compose down` to soft exit.
 
-### Cloud
+### Running Feathr on a Kubernetes Cluster
 
 This is the example of how Feathr should be deployed in a Kubernetes cluster. Attaching it
 
@@ -63,8 +63,11 @@ There are several architecture diagrams in the `architecture` folder that has re
 
 ## Feature Store workflow overview
 
-For batch use cases, the model automatically retrieves the features it needs from Feature Store.
-[batch](./etl/batch.drawio.png)
+For both batch and streaming use cases, Feathr automatically retrieves the features it needs from Feature Store.
+[etl](./etl/etl.drawio.png)
 
-For real-time serving use cases, publish the features to an online store.
-[realtime](./etl/realtime.drawio.png)
+The typical machine learning workflow using Feathr (Feature Store) follows this path:
+
+1. Converting raw data from streaming or batch sources into features
+2. Storing and registering features to Feathr in an online or offline store
+3. During exploratory data analysis, training or inference, retrieve feature vectors from online or offline store.
