@@ -64,7 +64,7 @@ There are several architecture diagrams in the `architecture` folder that has re
 ## Feature Store workflow overview
 
 For both batch and streaming use cases, Feathr automatically retrieves the features it needs from Feature Store.
-[etl](./etl/etl.drawio.png)
+![etl](./etl/etl.drawio.png)
 
 The typical machine learning workflow using Feathr (Feature Store) follows this path:
 
