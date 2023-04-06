@@ -28,7 +28,7 @@ This project contains the following containers:
   * References: https://hub.docker.com/r/windoze/model-server
 
 * **Feathr Registry**: Feathr's feature vector registry.
-  * Image: windoze/model-server:latest
+  * Image: feathrfeaturestore/feathr-registry:latest
   * Port: 8081
   * References: https://hub.docker.com/r/feathrfeaturestore/feathr-registry
 
@@ -49,7 +49,7 @@ Navigate to `Jupyter Lab (Spark)` on http://localhost:8888 to run a quick Jupyte
 
 Run `docker compose down` to soft exit.
 
-**Cloud**
+### Cloud
 
 This is the example of how Feathr should be deployed in a Kubernetes cluster. Attaching it
 
@@ -57,8 +57,14 @@ This is the example of how Feathr should be deployed in a Kubernetes cluster. At
 
 There are several architecture diagrams in the `architecture` folder that has recommended ways of integrating Feathr to your system:
 1. [docker-compose](./architecture/docker-compose/docker-compose.drawio.png): Local Run with Docker Compose
-1. [k8s-production]((./architecture/k8s-production/k8s-production.drawio.png): Running Feathr in production
-1. [k8s-sandbox]((./architecture/k8s-sandbox/k8s-sandbox.drawio.png)): Running Feathr with all the containers listed in `docker-compose` on Kubernetes.
-1. [k8s-azure-key-vault-integration]((./architecture/k8s-azure-key-vault-integration/k8s-azure-key-vault-integration.drawio.png)): Integrating Azure Key Vault into Azure Kubernetes Service to store secrets which are used by Feathr
+1. [k8s-production](./architecture/k8s-production/k8s-production.drawio.png): Running Feathr in production
+1. [k8s-sandbox](./architecture/k8s-sandbox/k8s-sandbox.drawio.png): Running Feathr with all the containers listed in `docker-compose` on Kubernetes.
+1. [k8s-azure-key-vault-integration](./architecture/k8s-azure-key-vault-integration/k8s-azure-key-vault-integration.drawio.png): Integrating Azure Key Vault into Azure Kubernetes Service to store secrets which are used by Feathr
 
-## Registering Features
+## Feature Store workflow overview
+
+For batch use cases, the model automatically retrieves the features it needs from Feature Store.
+[batch](./etl/batch.drawio.png)
+
+For real-time serving use cases, publish the features to an online store.
+[realtime](./etl/realtime.drawio.png)
